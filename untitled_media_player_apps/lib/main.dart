@@ -1,17 +1,23 @@
 
 
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled_media_player_apps/Controllers/my_tab_controller.dart';
+import 'package:untitled_media_player_apps/Controllers/theme_controller.dart';
+import 'package:untitled_media_player_apps/utils/route_utils.dart';
 import 'package:untitled_media_player_apps/views/screens/home_page.dart';
+import 'package:untitled_media_player_apps/views/screens/setting_page.dart';
 
 void main(){
 runApp(
-
+  MultiProvider(providers: [
     ChangeNotifierProvider(create: (context)=>MyTabController(),
-      child: MyApp(),
-    )
+    ),
+    ChangeNotifierProvider(create: (context)=>ThemeController(),),
+
+  ],
+    child: MyApp(),
+  ),
 );
 
 
@@ -27,7 +33,14 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: const HomePage(),
+      routes: {
+        MyRoutes.home:(context)=> const HomePage(),
+        MyRoutes.settingPage:(context)=> const SettingPage(),
+      },
+      themeMode:  Provider.of<ThemeController>(context).isDark? ThemeMode.dark : ThemeMode.light,
+      darkTheme: ThemeData(
+       brightness: Brightness.dark,
+      ),
     );
   }
 }

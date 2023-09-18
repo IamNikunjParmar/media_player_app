@@ -22,7 +22,7 @@ class MyTabController extends ChangeNotifier{
     notifyListeners();
   }
 
-  List tabs = ["Chats","Status","Calls","Profile","Pe","Prof","sdgfe","fag"];
+  List tabs = ["Chats","Status","Calls","Profile"];
 
   get tabIndex{
 
