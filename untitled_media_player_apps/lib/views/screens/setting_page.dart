@@ -57,6 +57,7 @@ class SettingPage extends StatelessWidget {
                     ),
                   ],
                 );
+
               }
           ),
         ],

@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled_media_player_apps/utils/route_utils.dart';
+import 'package:untitled_media_player_apps/views/screens/audio_page.dart';
+import 'package:untitled_media_player_apps/views/screens/video_page.dart';
 
 import '../../Controllers/my_tab_controller.dart';
 
@@ -19,7 +21,7 @@ class _HomePageState extends State<HomePage>with SingleTickerProviderStateMixin 
   @override
   void initState() {
     MyTabController.tabController = TabController(
-        length: 4,vsync:this);
+        length: 3,vsync:this);
     super.initState();
   }
 
@@ -101,19 +103,10 @@ class _HomePageState extends State<HomePage>with SingleTickerProviderStateMixin 
               ).toList()
             ),
            ),
-          body: PageView(
-            controller: pro.pageController,
-            children: List.generate(
-                4, (index) =>
-                        Container(
-              child: Text(
-                "1234"[index ],
-              ),
-                          alignment: Alignment.center,
-            ),
-            ),
+          body: TabBarView(
+            controller: MyTabController.tabController,
+            children: pro.tabPages
           ),
-
         );
       }
     );
